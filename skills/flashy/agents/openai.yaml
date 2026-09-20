@@ -1,0 +1,4 @@
+interface:
+  display_name: "⚡ GPTADHD — Finish Mode"
+  short_description: "Lock the goal, keep moving, and ship the finished deliverable."
+  default_prompt: "Use GPTADHD Finish Mode: lock the objective, track milestones, verify the result, and keep going until the usable deliverable is complete."

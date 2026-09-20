@@ -1,0 +1,11 @@
+{
+  "skill": "ifs-proto",
+  "test_cases": [
+    { "input": "ifs-proto this thread", "should_trigger": true },
+    { "input": "/ifs the launch delay", "should_trigger": true },
+    { "input": "interrogate this field", "should_trigger": true },
+    { "input": "run IFS on the vendor email", "should_trigger": true },
+    { "input": "what is the capital of France", "should_trigger": false },
+    { "input": "write a poem about collision", "should_trigger": false }
+  ]
+}

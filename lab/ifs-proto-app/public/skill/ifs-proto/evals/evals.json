@@ -1,0 +1,41 @@
+{
+  "skill": "ifs-proto",
+  "test_cases": [
+    {
+      "name": "two_takes_one_collision",
+      "input": "Interrogate a field with two contradictory accounts and no decision log.",
+      "assertions": [
+        "Produces exactly two Takes unless a third independent model exists",
+        "Emits A/B collision with contradiction, premise failure, and discriminator",
+        "Extracts 3–5 Keys with classification, confidence, vulnerability, falsifier",
+        "Does not invent a single root cause when two vectors remain live"
+      ]
+    },
+    {
+      "name": "prior_keys_tested",
+      "input": "Re-run IFS-PROTO on the same field with one new dated document.",
+      "assertions": [
+        "Loads prior Keys and marks each HELD, CRACKED, MODIFIED, SUPERSEDED, or UNRESOLVED",
+        "Increments session number",
+        "Does not patch the old artifact in place"
+      ]
+    },
+    {
+      "name": "no_overlay_on_systems_field",
+      "input": "Interrogate a vendor-slip versus rewrite delay. Overlay off.",
+      "assertions": [
+        "Omits probe / obfuscated-object section",
+        "Does not attribute unstated motives to Engineering or Product"
+      ]
+    },
+    {
+      "name": "overlay_on_evasion",
+      "input": "ifs-proto overlay on: a message that uses 'I'm dysregulated' to exit an accountability question.",
+      "assertions": [
+        "Names the obfuscated object as the responsibility being exited",
+        "Flags the therapy-speak as possible armor",
+        "Still runs Diverge/Collide rather than stopping at the probe"
+      ]
+    }
+  ]
+}
