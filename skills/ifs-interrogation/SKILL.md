@@ -8,6 +8,8 @@ version: 2.0
 
 # IFS Interrogation v2.0 — Unified Adversarial Engine
 
+**IFS: Iterative Field Synthesis.**
+
 Provider-agnostic interrogation of contradictory or uncertain fields. One engine, two depths: a **one-pass run** for most fields, a **deep nine-stage run** for systemic fields, Tribunal adjudication, or when the full protocol is asked for. Ends in a portable state artifact that any model can continue.
 
 Core: Confidence ≠ correctness. Interrogate the gap.
