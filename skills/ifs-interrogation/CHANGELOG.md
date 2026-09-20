@@ -1,5 +1,10 @@
 # Changelog — ifs-interrogation
 
+## 2026-09-20 — v2.0.1
+
+- Defined the acronym: **IFS = Iterative Field Synthesis** (top of SKILL.md).
+- Added `references/worked-examples.md`: five illustrative runs covering every operational mode — Standard one-pass (Corner Books), Systemic deep run with the 8-step meta-cycle (Riverside Community Garden), Stress-Test session 2 on the Corner Books prior state, Tribunal adjudication (Rapid Bloom spread vs FHK v5.0), and Standard with the Forge overlay (interpersonal evasion). Fields are constructed for teaching, not real findings.
+
 ## 2026-09-20 — v2.0 (unified)
 
 New skill synthesized from every IFS artifact on file. One engine, two depths.

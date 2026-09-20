@@ -7,5 +7,6 @@ Read in this order when you need the full protocol behind SKILL.md.
 - **state-artifact.md** — the exact canonical Markdown schema for the emitted state artifact, field naming, and versioning rules.
 - **modes.md** — operational modes (Standard / Systemic / Stress-Test / Tribunal) and the 8-step meta-execution cycle for large ongoing fields. Read when running the deep nine-stage run.
 - **overlay-forge.md** — the Field Forge Anvil + Hammer overlay for interpersonal evasion. Opt-in only; default off.
+- **worked-examples.md** — five illustrative runs: Standard one-pass, Systemic deep run, Stress-Test (session 2), Tribunal adjudication, and Standard with the Forge overlay. Read after SKILL.md to see the engine's choreography before running it on a real field.
 
-connections: [evidence-taxonomy, prior-state, state-artifact, modes, overlay-forge]
+connections: [evidence-taxonomy, prior-state, state-artifact, modes, overlay-forge, worked-examples]
