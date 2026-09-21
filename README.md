@@ -1,6 +1,6 @@
 # skill-suite
 
-Ryan's canonical skill collection. **Private** — stays private until Ryan says otherwise.
+Ryan's canonical skill collection. **Public.**
 
 ## Layout
 
@@ -26,5 +26,4 @@ Ryan's canonical skill collection. **Private** — stays private until Ryan says
 
 ## Decisions log
 
-- **2026-09-20:** Ryan approved the migration plan. Paragon held in `lab/` (FHK Paragon Spirit supersedes fhk-expert but stays out of `skills/` for now). IFS-PROTO app source parked in `lab/ifs-proto-app/`. New unified `ifs-interrogation` v2.0 synthesized from every bit of the IFS material. `ports/` is the next project. Repo stays private until Ryan says otherwise.
-- Nothing here is published or pushed anywhere — local repo only.
+- **2026-09-20:** Ryan approved the migration plan. Paragon held in `lab/` (FHK Paragon Spirit supersedes fhk-expert but stays out of `skills/` for now). IFS-PROTO app source parked in `lab/ifs-proto-app/`. New unified `ifs-interrogation` v2.0 synthesized from every bit of the IFS material. `ports/` is the next project. Repo made public the same day.
