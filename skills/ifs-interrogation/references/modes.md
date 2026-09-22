@@ -23,7 +23,14 @@ Wrap the nine-stage engine in this cycle when managing large, systemic, or ongoi
 5. **Generate Explanatory Keys** — run the engine through Refine.
 6. **Stress-Test Keys** — load prior state (session 2+) and test against new data.
 7. **Update the Field** — reorganize the model based on surviving Keys.
-8. **Iterate or Capture** — unresolved contradictions remain: loop. Otherwise emit the state artifact.
+8. **Iterate or Capture** — unresolved contradictions remain: loop **(this looping rule applies only here, on the deep/Systemic meta-cycle path — see loop-scope rule below)**. Otherwise emit the state artifact.
+
+## Loop-scope rule
+
+The no-loop and iterate-loop rules are scoped to their paths and do not contradict:
+
+- **One-pass path (default): never loops.** Unresolved questions go in remainingUncertainties and primaryNextTarget — they do not trigger another pass. This is the engine's hard limit, inherited from IFS-PROTO v1.0.
+- **Deep/Systemic path via the meta-cycle above: may iterate.** Step 8's "loop" applies only to large ongoing multi-session fields wrapped in this cycle. It never applies to the one-pass path.
 
 ## The nine stages (deep run)
 

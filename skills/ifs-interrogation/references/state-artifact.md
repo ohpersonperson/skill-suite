@@ -27,6 +27,8 @@ field_type: [Analytical | Narrative | Systemic | Conceptual | Mixed]
 depth: [one-pass | deep]
 trigger_context: [what invoked this run]
 status: complete
+lifecycle: [INITIAL | ITERATIVE | FINAL]
+protocol: [skill-name/version + engine-name/version that produced this artifact, e.g. ifs-interrogation/2.0.2 (engine IFS-Proto-v1.0)]
 persistence: external
 canonical: true
 ---
@@ -40,6 +42,8 @@ canonical: true
 - Depth:
 - Interrogation:
 - Trigger Context:
+- Protocol: [skill + engine versions that produced this artifact — e.g. ifs-interrogation/2.0.2 (engine IFS-Proto-v1.0)]
+- Lifecycle: [INITIAL | ITERATIVE | FINAL — FINAL only if the field is resolved enough that the next target is idle]
 
 ## Prior State
 - Prior interrogation: [number / Not supplied]
@@ -79,6 +83,7 @@ canonical: true
 
 ## State Status
 - Interrogation: Complete
+- Lifecycle: [INITIAL | ITERATIVE | FINAL]
 - State: Canonical
 - Persistence: External
 - External Save: Not performed by this interrogation model

@@ -1,5 +1,10 @@
 # Changelog — ifs-interrogation
 
+## 2026-09-21 — v2.0.2
+
+- **Artifact provenance fields (IFS-PROTO verification gaps 8/9).** Added `protocol:` (skill + engine versions that produced the artifact) and `lifecycle:` (INITIAL | ITERATIVE | FINAL; FINAL only if the field is resolved enough that the next target is idle) to the state-artifact frontmatter, Interrogation Metadata, and State Status. Artifacts now record what produced them and their session lifecycle.
+- **Loop-scope rule (IFS-PROTO verification C3).** Scoped the two loop rules explicitly: the one-pass path never loops (engine hard limit; unresolved questions go to remainingUncertainties / primaryNextTarget); the meta-cycle's "Iterate or Capture" loop applies only to the deep/Systemic path. No rule change — this disambiguates what already held.
+
 ## 2026-09-20 — v2.0.1
 
 - Defined the acronym: **IFS = Iterative Field Synthesis** (top of SKILL.md).

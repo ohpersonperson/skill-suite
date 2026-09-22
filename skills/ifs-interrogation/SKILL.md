@@ -3,7 +3,7 @@ name: ifs-interrogation
 description: "Unified adversarial interrogation of contradictory or uncertain fields. One-pass by default, deep nine-stage run when the field warrants it. Use when the user invokes interrogate [field], /ifs, /ifs [field], run IFS on [thing], ifs deep dive, stress-test [field], collide takes, or brings a situation, claim, or contradiction that needs pressure-testing into load-bearing Keys. Not for simple factual lookup, casual chat, or creative writing. Field Forge Anvil/Hammer overlay is opt-in, not default."
 type: workflow
 lifecycle: active
-version: 2.0
+version: 2.0.2
 ---
 
 # IFS Interrogation v2.0 — Unified Adversarial Engine
@@ -36,6 +36,8 @@ Core: Confidence ≠ correctness. Interrogate the gap.
 5. Surprise + Synthesis + Capture — the non-obvious result of the collision (or "No material Surprise identified."); the surviving model; the complete Markdown state artifact.
 
 **Deep run.** All nine stages, spelled out: IDENTIFY, DECOMPOSE, QUESTION, TEST, COLLIDE, REFINE, SURPRISE, SYNTHESIZE, CAPTURE STATE. QUESTION and TEST get their own stages: high-impact questions capable of changing the model, and active attempts to falsify the strongest interpretations. Use for large systemic fields, Tribunal adjudication, or when asked. For large ongoing multi-session fields, wrap the engine in the 8-step meta-execution cycle (see `references/modes.md`).
+
+Loop rule is scoped by path: the one-pass never loops (unresolved questions go to remainingUncertainties / primaryNextTarget, never a second pass); only the deep/Systemic path wrapped in the meta-cycle may iterate (see `references/modes.md`, "Loop-scope rule").
 
 Do not skip stages merely because an earlier stage appears sufficient.
 
