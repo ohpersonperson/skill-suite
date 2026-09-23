@@ -73,6 +73,11 @@ canonical: true
 - Refined Keys: Statement / Classification / Evidence / Confidence / Vulnerability / Falsifier
 - Prior Key Dispositions table (when prior state exists)
 
+### Key count bounds (verified 2026-09-23)
+- Range is **3–5 Keys per interrogation**, prompt-enforced in both the archived IFS-PROTO v1.0 engine ("Extract 3–5 load-bearing Keys") and this skill (Refine phase).
+- There is **no code-level ceiling**: no slicing, truncation, or count enforcement exists in the engine or the ifs-proto app (verified by source search, 2026-09-23). Both bounds live in the prompt.
+- Tiebreak: **prefer fewer, stronger**. A Key that cannot survive stress-testing is discarded, not softened — the quality gate is adversarial survival, not the count.
+
 ## 6. Surprise
 - Surprise Claim + Significance, or: No material Surprise identified.
 

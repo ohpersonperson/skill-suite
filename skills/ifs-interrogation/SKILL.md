@@ -1,9 +1,9 @@
 ---
 name: ifs-interrogation
-description: "Unified adversarial interrogation of contradictory or uncertain fields. One-pass by default, deep nine-stage run when the field warrants it. Use when the user invokes interrogate [field], /ifs, /ifs [field], run IFS on [thing], ifs deep dive, stress-test [field], collide takes, or brings a situation, claim, or contradiction that needs pressure-testing into load-bearing Keys. Not for simple factual lookup, casual chat, or creative writing. Field Forge Anvil/Hammer overlay is opt-in, not default."
+description: "Unified adversarial interrogation of contradictory or uncertain fields. One-pass by default, deep nine-stage run when the field warrants it. Use when the user invokes interrogate [field], /ifs, /ifs [field], run IFS on [thing], ifs deep dive, stress-test [field], collide takes, or brings a situation, claim, or contradiction that needs pressure-testing into load-bearing Keys. Legacy aliases (restored 2026-09-23 to prevent routing breakage): ifs-proto, ifsproto, /ifs-proto, proto interrogation. Not for simple factual lookup, casual chat, or creative writing. Field Forge Anvil/Hammer overlay is opt-in, not default."
 type: workflow
 lifecycle: active
-version: 2.0.3
+version: 2.0.4
 ---
 
 # IFS Interrogation v2.0 — Unified Adversarial Engine

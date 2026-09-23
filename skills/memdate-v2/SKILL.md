@@ -112,6 +112,22 @@ Critical rule: Capture is not the place to decide what the information means.
 
 Distillation is a consolidation pass, not a rewrite of history.
 
+### distilled.md frontmatter (Phase 1.1 invariant)
+
+Every distilled.md carries provenance frontmatter recording what produced it:
+
+```
+---
+artifact: memdate-distilled
+domain: [domain name]
+date: [YYYY-MM-DD]
+protocol: [memdate-v2/version that produced this distillation]
+lifecycle: [INITIAL | ITERATIVE | FINAL — FINAL only if the domain's raw record is fully consolidated with no open threads]
+---
+```
+
+`raw.md` is explicitly excluded from this invariant: CAPTURE is an append-only evidence log, and per-entry version metadata would pollute source fidelity. The protocol stamp lives on the derived representation, never on the raw record.
+
 ## CROSS-DOMAIN INDEX (mandatory after full distill)
 
 After completing distilled.md updates, always produce or refresh:

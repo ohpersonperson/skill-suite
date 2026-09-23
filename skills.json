@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-21",
   "manifest_version": "1.0",
-  "note": "Layers follow the ChatGPT Phase-1 decomposition (kernel / controllers / persistence); unclassified layers are marked \"unclassified\" and pending Phase-2 overlay conversion. Null means not yet declared in the skill \u2014 not that it is empty.",
+  "note": "Layers follow the ChatGPT Phase-1 decomposition (kernel / controllers / persistence); unclassified layers are marked \"unclassified\" and pending Phase-2 overlay conversion. Null means not yet declared in the skill — not that it is empty.",
   "repo": "ohpersonperson/skill-suite",
   "schema": "name, version, type, layer, status, purpose, invoke, inputs, outputs, dependencies, overlays, persistence, invariants, failure_modes, evals, lineage",
   "skills": [
@@ -22,7 +22,8 @@
         "never fabricate facts/actors/events/motives/certainty",
         "never silently rewrite a prior Key",
         "one-pass never loops",
-        "unresolved questions go to remainingUncertainties/primaryNextTarget, never a second pass"
+        "unresolved questions go to remainingUncertainties/primaryNextTarget, never a second pass",
+        "Key count 3-5 is prompt-enforced (no code ceiling exists; verified 2026-09-23)"
       ],
       "invoke": [
         "interrogate [field]",
@@ -50,7 +51,7 @@
       "purpose": "Unified adversarial interrogation of contradictory or uncertain fields. One-pass by default, deep nine-stage run when the field warrants it.",
       "status": "active",
       "type": "workflow",
-      "version": "2.0.2"
+      "version": "2.0.4"
     },
     {
       "dependencies": [],
@@ -131,7 +132,7 @@
       "outputs": null,
       "overlays": [],
       "persistence": null,
-      "purpose": "Metacognition as interrogation \u2014 kills weak reasoning before it hardens; single-agent and multi-agent debate patterns. Cross-cutting: invocable as an overlay on other components, never a primary route.",
+      "purpose": "Metacognition as interrogation — kills weak reasoning before it hardens; single-agent and multi-agent debate patterns. Cross-cutting: invocable as an overlay on other components, never a primary route.",
       "roadmap_note": "pending operational rewrite: trigger thresholds -> strongest countermodel -> load-bearing assumptions -> collision -> confidence revision",
       "status": "active",
       "type": "controller",
@@ -214,7 +215,7 @@
       ],
       "persistence": "memdate capture-only handoff",
       "purpose": "One-pass interrogation of contradictory or uncertain fields; Field Forge Anvil/Hammer overlay is opt-in.",
-      "roadmap_note": "Archived 2026-09-21 under archive/ifs-lineage/ as retired lineage; see archive/ifs-lineage/IFS-LINEAGE.md. Frozen: not maintained, not routable \u2014 ifs-interrogation is the canonical IFS.",
+      "roadmap_note": "Archived 2026-09-21 under archive/ifs-lineage/ as retired lineage; see archive/ifs-lineage/IFS-LINEAGE.md. Frozen: not maintained, not routable — ifs-interrogation is the canonical IFS.",
       "status": "superseded-lineage",
       "type": "workflow",
       "version": "1.0",
@@ -236,7 +237,7 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Provider-agnostic, one-pass interrogation of contradictory or uncertain fields.",
-      "roadmap_note": "Archived 2026-09-21 under archive/ifs-lineage/ as retired lineage; see archive/ifs-lineage/IFS-LINEAGE.md. Frozen: not maintained, not routable \u2014 ifs-interrogation is the canonical IFS.",
+      "roadmap_note": "Archived 2026-09-21 under archive/ifs-lineage/ as retired lineage; see archive/ifs-lineage/IFS-LINEAGE.md. Frozen: not maintained, not routable — ifs-interrogation is the canonical IFS.",
       "status": "superseded-lineage",
       "type": "workflow",
       "version": "2.1",
@@ -260,10 +261,10 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Unified Dialectical Interrogation System: three-stage Anvil/Hammer/Furnace pipeline for situational auditing, obfuscation stripping, and dialectical interrogation.",
-      "roadmap_note": "Phase 2 proposes converting to an overlay on the IFS kernel; conversion mechanics pending",
+      "roadmap_note": "Phase 2 proposes converting to an overlay on the IFS kernel; conversion mechanics pending | Phase 1.1 done 2026-09-23: state artifacts carry protocol:/lifecycle: frontmatter",
       "status": "active",
       "type": "workflow",
-      "version": "1.0"
+      "version": "1.1"
     },
     {
       "dependencies": [],
