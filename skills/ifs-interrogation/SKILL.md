@@ -114,7 +114,7 @@ Typical one-pass budget: Takes 300–600 tokens, collisions 150–450, Keys 300�
 
 ## Overlay (opt-in)
 
-When the field is interpersonal evasion, therapy-speak armor, or responsibility dodging — and only when requested — load `references/overlay-forge.md` and run Anvil + Hammer before Diverge. Default is overlay off. The overlay adds the OBFUSCATION evidence tag, time-indexed person-states, and the jargon-armor strip. It never replaces Diverge/Collide.
+When the field is interpersonal evasion, therapy-speak armor, or responsibility dodging — and only when requested — load `references/overlay-forge.md` and run the field-forge overlay before Diverge: Anvil maps the ground, Hammer strips the armor, and the Furnace handoff feeds Take seeds directly into Diverge. Default is overlay off. The overlay adds the OBFUSCATION evidence tag, time-indexed person-states, and the jargon-armor strip. It never replaces Diverge/Collide.
 
 ## Inviolable constraints
 
@@ -162,7 +162,7 @@ Start at `references/INDEX.md`.
 
 - [[ifs2-compressed-v21:]] — the compressed one-pass engine this skill's default run descends from
 - [[ifs-proto:]] — the v1.0 packaged prototype; overlay, compression, and eval lineage
-- [[field-forge:]] — standalone dialectical system; Anvil/Hammer available as opt-in overlay
+- [[field-forge:]] — opt-in overlay (v2.0); Anvil/Hammer/Furnace-handoff feed Diverge. Never standalone.
 - [[memdate-v2:]] — capture-only persistence for emitted artifacts
 - [[responsibility-obfuscation-probe:]] — Hammer lineage; overlay only
 - [[forensic-situational-audit:]] — implicit trigger when audits surface conflicting facts

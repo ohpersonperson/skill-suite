@@ -45,7 +45,10 @@
       "name": "ifs-interrogation",
       "outputs": "portable Markdown state artifact (ifs-state-[field-name].md): tagged evidence, Takes, collisions, 3-5 load-bearing Keys, Surprise, synthesis, prior-Key dispositions",
       "overlays": [
-        "field-forge (opt-in Anvil/Hammer)"
+        "field-forge (opt-in Anvil/Hammer)",
+        "field-forge",
+        "responsibility-obfuscation-probe",
+        "forensic-situational-audit"
       ],
       "persistence": "memdate capture-only handoff; model is not the persistence layer",
       "purpose": "Unified adversarial interrogation of contradictory or uncertain fields. One-pass by default, deep nine-stage run when the field warrants it.",
@@ -122,7 +125,13 @@
       "evals": false,
       "failure_modes": null,
       "inputs": null,
-      "invariants": null,
+      "invariants": [
+        "never a primary route: pressure-tests analysis, never originates it",
+        "stands down when no trigger threshold trips",
+        "countermodel is steelman-only; strawman invalidates the run",
+        "order is load-bearing: never evaluate before colliding",
+        "output is the collision record with confidence before->after delta"
+      ],
       "invoke": null,
       "layer": "controller",
       "lineage": [
@@ -133,10 +142,10 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Metacognition as interrogation — kills weak reasoning before it hardens; single-agent and multi-agent debate patterns. Cross-cutting: invocable as an overlay on other components, never a primary route.",
-      "roadmap_note": "pending operational rewrite: trigger thresholds -> strongest countermodel -> load-bearing assumptions -> collision -> confidence revision",
+      "roadmap_note": "Phase 2.1 done 2026-09-23: operational rewrite shipped (trigger thresholds -> strongest countermodel -> load-bearing assumptions -> collision -> confidence revision)",
       "status": "active",
       "type": "controller",
-      "version": null
+      "version": "2.0"
     },
     {
       "dependencies": [],
@@ -249,10 +258,15 @@
       "failure_modes": null,
       "inputs": "complex human situations, high-stakes conflicts, evasive communication, contradictory fields",
       "invariants": [
-        "preserve Anvil -> Hammer -> Furnace epistemic-pressure stages"
+        "opt-in only: never fires by default; stands down on clean ground",
+        "never runs Collide/Adjudicate/Refine/Surprise independently: the kernel owns those",
+        "Anvil output feeds kernel Decompose as pre-audited ground",
+        "Hammer output tagged OBFUSCATION feeds kernel Diverge",
+        "Furnace produces Take seeds only, injected directly into kernel Diverge",
+        "emits forge brief with protocol:/lifecycle: frontmatter; kernel artifact remains canonical"
       ],
       "invoke": null,
-      "layer": "unclassified",
+      "layer": "overlay",
       "lineage": [
         "Drive Doc field_forge_claude.md (2026-09-15)"
       ],
@@ -261,10 +275,10 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Unified Dialectical Interrogation System: three-stage Anvil/Hammer/Furnace pipeline for situational auditing, obfuscation stripping, and dialectical interrogation.",
-      "roadmap_note": "Phase 2 proposes converting to an overlay on the IFS kernel; conversion mechanics pending | Phase 1.1 done 2026-09-23: state artifacts carry protocol:/lifecycle: frontmatter",
+      "roadmap_note": "Phase 2.2 done 2026-09-23: converted to opt-in overlay on ifs-interrogation kernel (Anvil+Hammer feed Diverge; Furnace is the handoff)",
       "status": "active",
-      "type": "workflow",
-      "version": "1.1"
+      "type": "overlay",
+      "version": "2.0"
     },
     {
       "dependencies": [],
@@ -272,9 +286,11 @@
       "failure_modes": null,
       "inputs": "a messy situation: conflict, crisis, contradictory evolving facts",
       "invariants": [
-        "do not fuse separate statements into a tidy hypothesis",
-        "do not resolve contradictions",
-        "do not soften language describing threat, harm, or betrayal"
+        "never resolves a contradiction the kernel is holding",
+        "never supplies synthesis on the user’s behalf",
+        "correction typing is explicit: detail corrections never re-litigate standing core claims",
+        "softening self-check runs before any output passes to kernel Refine",
+        "direct audit mode never converts to interrogation unasked"
       ],
       "invoke": [
         "audit this",
@@ -282,7 +298,7 @@
         "don't resolve this, just hold it",
         "track this, don't smooth it over"
       ],
-      "layer": "unclassified",
+      "layer": "overlay",
       "lineage": [
         "2026-08-23 working archive (predecessor of this repo)"
       ],
@@ -291,19 +307,25 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Forensic audit of messy, high-stakes situations; holds contradictions, never narratively smooths them.",
-      "roadmap_note": "Phase 2 proposes converting to an overlay on the IFS kernel; conversion mechanics pending",
+      "roadmap_note": "Phase 2.4 done 2026-09-23: converted to specialized kernel overlay (five disciplines enforce Decompose/Collide) + direct audit mode",
       "status": "active",
-      "type": "workflow",
-      "version": null
+      "type": "overlay",
+      "version": "2.0"
     },
     {
       "dependencies": [],
       "evals": false,
       "failure_modes": null,
       "inputs": "evasive interpersonal communication",
-      "invariants": null,
+      "invariants": [
+        "therapy-speak evaluated as testable hypothesis (H-obfuscation/H-genuine/H-both), never pre-judged",
+        "no evasion declared without discriminating evidence",
+        "\"no evasion hypotheses supported\" is a valid output",
+        "findings feed kernel Diverge as hypothesis-tagged material; kernel owns collision onward",
+        "no therapeutic or coaching framing, ever"
+      ],
       "invoke": null,
-      "layer": "unclassified",
+      "layer": "overlay",
       "lineage": [
         "2026-08-23 working archive (predecessor of this repo)"
       ],
@@ -312,10 +334,10 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Dialogic dissection of evasive communication; flags therapy-speak and self-regulation claims as obfuscation of responsibility. No therapeutic framing.",
-      "roadmap_note": "Phase 2 proposes conversion to an IFS overlay AFTER de-biasing rewrite (therapy-language claims become testable hypotheses, not premises); rewrite is a content task, pending",
+      "roadmap_note": "Phase 2.3 done 2026-09-23: de-biased (hypothesis protocol replaces mandatory flag); converted to IFS overlay",
       "status": "active",
-      "type": "workflow",
-      "version": null
+      "type": "overlay",
+      "version": "2.0"
     }
   ]
 }
