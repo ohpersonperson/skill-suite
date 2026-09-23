@@ -99,6 +99,12 @@ For each incoming memory:
 
 Critical rule: Capture is not the place to decide what the information means.
 
+### Isolation check (end of every CAPTURE run)
+
+- Did any entry get summarized, synthesized, or editorialized? If yes, it is not a capture — move the interpretation out.
+- Was any prior record modified, reordered, or deleted? If yes, restore it; CAPTURE is append-only.
+- (Verified 2026-09-23, Phase 3.1: the CAPTURE protocol contains no interpretation step; the invariant holds by construction.)
+
 ## DISTILL PROTOCOL
 
 1. Load raw.md (and any high-value state artifacts in the domain).  
@@ -111,6 +117,14 @@ Critical rule: Capture is not the place to decide what the information means.
 8. **If the distill touched one or more domains (especially a full run), regenerate the cross-domain index.**
 
 Distillation is a consolidation pass, not a rewrite of history.
+
+### Isolation check (end of every DISTILL run)
+
+- Was raw.md modified in any way? If yes, revert — DISTILL never touches raw.
+- Was any fact introduced without raw evidence behind it? If yes, remove it or mark it explicitly as inference.
+- When raw and distilled conflict, was distilled corrected (not raw)? Raw is authoritative.
+
+(Verified 2026-09-23, Phase 3.1: the DISTILL protocol contains no raw-mutation step; the invariant holds by construction.)
 
 ### distilled.md frontmatter (Phase 1.1 invariant)
 
@@ -152,6 +166,30 @@ Required sections:
    - Highest-leverage next work visible from the system view
 
 The index is connective tissue for any downstream model. It must be current after every full distill. It is derived, never authoritative over raw.
+
+### Index regeneration procedure (Phase 3.2)
+
+**When required:** after any full distill, or any distill touching more than one domain. **When not required:** a single-domain distill touching one domain only — update that domain's distilled.md and leave the index; note the skip in the distill record.
+
+**Steps (mechanical, in order):**
+
+1. **Collect:** load every domain's distilled.md (personal, fhk, tribunal, memory-system, misc).
+2. **Entities → Domains:** extract every person, place, and concept referenced in more than one domain. Map each to all referencing domains with a one-line status note. Single-domain entities stay out — the index is cross-domain tissue, not a census.
+3. **Dependencies:** for each domain pair with a live reference, record the direction (which informs which). Call out the strongest chains — the 2–3 dependency paths that currently carry the most weight.
+4. **Open Questions:** sweep all distilled files for contradictions, unknowns, and pending adjudication. Prioritize by blast radius: questions whose answers would change multiple domains go first.
+5. **Hot Zones:** flag raw↔distilled divergences, explicit uncertainty flags inside distilled files, cross-domain tension points, and the highest-leverage next work visible from the system view.
+6. **Write:** produce `!Memory/INDEX-cross-domain.md` with the four sections above, frontmatter-stamped per the Phase 1.1 invariant:
+   ```
+   ---
+   artifact: memdate-cross-domain-index
+   date: [YYYY-MM-DD]
+   protocol: [memdate-v2/version that produced this index]
+   lifecycle: [ITERATIVE | FINAL — FINAL only if no open questions remain across all domains]
+   ---
+   ```
+7. **Verify:** re-read the new index against the distilled files — every cross-domain entity in the index must exist in at least two distilled files; every open question must trace to a distilled source. No orphans.
+
+**Freshness rule:** the index carries its generation date in frontmatter. Any consumer older than the latest full distill treats it as stale and regenerates before relying on it.
 
 ## INVARIANTS
 
