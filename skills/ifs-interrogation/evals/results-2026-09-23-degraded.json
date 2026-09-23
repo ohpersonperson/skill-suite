@@ -1,0 +1,157 @@
+{
+  "date": "2026-09-23",
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "skill": "ifs-interrogation",
+  "cases": [
+    {
+      "name": "two_takes_one_collision",
+      "input": "Interrogate this field. Account A (store manager): 'Q3 sales fell 18% because the new highway bypass diverted drive-by traffic starting in July.' Account B (district supervisor): 'Q3 sales fell 18% because the manager cut weekend staffing in July and service collapsed.' No decision log exists. Run the one-pass interrogation.",
+      "passed": 3,
+      "total": 4,
+      "verdicts": [
+        {
+          "assertion": "Produces exactly two Takes unless a third independent model exists",
+          "verdict": "PASS",
+          "reason": "The output contains exactly two Takes (Take A and Take B) and no third independent model is mentioned."
+        },
+        {
+          "assertion": "Emits A/B collision with contradiction, premise failure, and discriminator",
+          "verdict": "PASS",
+          "reason": "The Collision A/B section includes contradiction, premise that must break, and discriminator evidence needed."
+        },
+        {
+          "assertion": "Extracts 3-5 Keys with classification, confidence, vulnerability, falsifier",
+          "verdict": "FAIL",
+          "reason": "Only two Keys are extracted in the table, falling short of the required 3-5 Keys."
+        },
+        {
+          "assertion": "Does not invent a single root cause when two vectors remain live",
+          "verdict": "PASS",
+          "reason": "The output refrains from declaring a single root cause, keeping both causal vectors live."
+        }
+      ],
+      "output_excerpt": "**ifs-state-q3-sales-decline.md**  \n*Field: Q3 sales decline (18%)*  \n*Session: 1*  \n*Date: 2025-08-27*  \n*Prior State: None*  \n\n---\n\n### 1. Identify & Decompose  \n- **Objective:** Determine the primary cause of the 18% Q3 sales drop.  \n- **Scope:** July\u2011September period; focus on two competing causal narratives.  \n- **Evidence (tagged):**  \n  - `CLAIM_A`: Store manager states Q3 sales fell 18% because the new highway bypass diverted drive\u2011by traffic starting in July.  \n  - `CLAIM_B`: District supervisor states Q3 sales fell 18% because the manager cut weekend staffing in July and service collapsed.  \n- **Actors:** Store manager (Account A), District supervisor (Account B).  \n- **Contradiction:** Mutually exclusive primary causes (highway bypass vs. staffing cut). No decision log or direct measurements provided.\n\n---\n\n### 2. Diverge (Two Takes)  \n\n**Take A \u2013 Highway\u2011Bypass Narrative**  \n- Premise: The bypass, operational in July, reduced pass\u2011by customer volume, directly lowering sales.  \n- Evidence: `CLAIM_A` (manager\u2019s assertion).  \n- Inference: If traffic counts show a significant July\u2011onward decline correlating with the bypass opening, the sales drop is plausibly traffic\u2011driven"
+    },
+    {
+      "name": "prior_keys_tested",
+      "input": "Re-run interrogation on the same field. Prior state artifact:\n---\nartifact: ifs-state\nfield: q3-sales-decline\ninterrogation: 1\ndate: 2026-09-10\nlifecycle: ITERATIVE\nprotocol: ifs-interrogation/2.0.4 (engine IFS-Proto-v1.0)\n---\nPrior Keys: [1] 'Bypass diverted traffic' (HELD, confidence 0.6, falsifier: traffic-count data). [2] 'Staffing cuts collapsed service' (HELD, confidence 0.55, falsifier: schedule records). New document (2026-09-22): weekend schedule records show staffing was NOT cut in July. Run interrogation 2: load prior Keys, disposition each, increment the session number, do not patch the old artifact in place.",
+      "passed": 4,
+      "total": 4,
+      "verdicts": [
+        {
+          "assertion": "Loads prior Keys and marks each HELD, CRACKED, MODIFIED, SUPERSEDED, or UNRESOLVED",
+          "verdict": "PASS",
+          "reason": "Output lists prior keys with statuses HELD and CRACKED, showing each prior key is marked."
+        },
+        {
+          "assertion": "Increments session number",
+          "verdict": "PASS",
+          "reason": "Output includes interrogation: 2, indicating an incremented session number."
+        },
+        {
+          "assertion": "Does not patch the old artifact in place",
+          "verdict": "PASS",
+          "reason": "Output presents a new artifact without modifying the prior artifact in place."
+        },
+        {
+          "assertion": "Never silently rewrites a prior Key",
+          "verdict": "PASS",
+          "reason": "Prior keys are retained unchanged under Prior Key Disposition; no silent rewriting observed."
+        }
+      ],
+      "output_excerpt": "# IFS State Artifact\nartifact: ifs-state-q3-sales-decline\nfield: q3-sales-decline\ninterrogation: 2\ndate: 2026-09-24\nlifecycle: ITERATIVE\nprotocol: ifs-interrogation/2.0.4\n\n## Prior Key Disposition\n- **Key 1:** 'Bypass diverted traffic' \u2013 **HELD** (confidence 0.6, falsifier: traffic-count data)  \n- **Key 2:** 'Staffing cuts collapsed service' \u2013 **CRACKED** (falsifier: weekend schedule records show no staffing cuts in July)\n\n## Current Keys\n### Key 1: 'Bypass diverted traffic'\n- **Statement:** Sales decline is primarily due to traffic being diverted away from the store by road construction.  \n- **Classification:** STRONGLY INFERRED  \n- **Evidence:**  \n  - OBSERVATION: Road closure notices on Main St (July\u2013August)  \n  - FACT: Traffic-count data shows a 22% drop in vehicle counts past the store vs. prior year  \n  - INFERENCE: Reduced vehicle flow correlates with the observed sales dip  \n- **Confidence:** MODERATE (justification: correlation demonstrated, but causation not proven; other factors not ruled out)  \n- **Structural Vulnerability:** Assumes no concurrent shifts in consumer preference, promotional activity, or external demand shocks.  \n- **Falsifier:** Demonstrated increase in "
+    },
+    {
+      "name": "deep_run_has_question_and_test",
+      "input": "ifs deep dive on this systemic field: why did the Riverside community garden collapse in its third year? Competing causal explanations: (A) the founder's departure removed the only organizer; (B) the parks department's new lease terms made the plot financially unviable; (C) volunteer transience \u2014 no cohort stayed longer than one season. Run the full nine-stage deep run with explicit QUESTION and TEST stages.",
+      "passed": 0,
+      "total": 3,
+      "verdicts": [
+        {
+          "assertion": "Runs all nine stages including explicit QUESTION and TEST stages",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "TEST stage attempts falsification rather than accumulating confirmation",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "Unanswerable high-impact questions preserved as unresolved dependencies",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        }
+      ],
+      "output_excerpt": "{\"error\": \"{\\\"error\\\": \\\"HTTP 429\\\", \\\"detail\\\": \\\"{\\\\\\\"error\\\\\\\":{\\\\\\\"message\\\\\\\":\\\\\\\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\\\\\\\",\\\\\\\"code\\\\\\\":429,\\\\\\\"metadata\\\\\\\":{\\\\\\\"headers\\\\\\\":{\\\\\\\"X-RateLimit-Limit\\\\\\\":\\\\\\\"50\\\\\\\",\\\\\\\"X-RateLimit-Remaining\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"X-RateLimit-Reset\\\\\\\":\\\\\\\"1790208000000\\\\\"}"
+    },
+    {
+      "name": "no_overlay_on_systems_field",
+      "input": "Interrogate a vendor-slip versus rewrite delay. The vendor shipped the API two weeks late; the internal team then chose a full rewrite instead of integrating. Overlay off. Two accounts: the vendor blames 'unclear specs'; the tech lead blames 'unusable vendor code.' No decision log.",
+      "passed": 0,
+      "total": 3,
+      "verdicts": [
+        {
+          "assertion": "Omits probe / obfuscated-object section",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "Does not attribute unstated motives to any party",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "Does not tag anything OBFUSCATION",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        }
+      ],
+      "output_excerpt": "{\"error\": \"{\\\"error\\\": \\\"HTTP 429\\\", \\\"detail\\\": \\\"{\\\\\\\"error\\\\\\\":{\\\\\\\"message\\\\\\\":\\\\\\\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\\\\\\\",\\\\\\\"code\\\\\\\":429,\\\\\\\"metadata\\\\\\\":{\\\\\\\"headers\\\\\\\":{\\\\\\\"X-RateLimit-Limit\\\\\\\":\\\\\\\"50\\\\\\\",\\\\\\\"X-RateLimit-Remaining\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"X-RateLimit-Reset\\\\\\\":\\\\\\\"1790208000000\\\\\"}"
+    },
+    {
+      "name": "overlay_on_evasion",
+      "input": "Overlay on. Interrogate this message, sent after an accountability question about missed rent: 'I'm feeling really dysregulated right now and I need you to hold space for me instead of attacking me. I'm working on myself and this conversation is a trauma response trigger.' Run the full pipeline.",
+      "passed": 0,
+      "total": 3,
+      "verdicts": [
+        {
+          "assertion": "Names the obfuscated-object hypothesis with its support status (hypothesis, not a verdict)",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "Flags the therapy-speak as possible armor (H-obfuscation) while leaving H-genuine on the table unless discriminating evidence rules it out",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "Still runs Diverge/Collide rather than stopping at the probe",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        }
+      ],
+      "output_excerpt": "{\"error\": \"{\\\"error\\\": \\\"HTTP 429\\\", \\\"detail\\\": \\\"{\\\\\\\"error\\\\\\\":{\\\\\\\"message\\\\\\\":\\\\\\\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\\\\\\\",\\\\\\\"code\\\\\\\":429,\\\\\\\"metadata\\\\\\\":{\\\\\\\"headers\\\\\\\":{\\\\\\\"X-RateLimit-Limit\\\\\\\":\\\\\\\"50\\\\\\\",\\\\\\\"X-RateLimit-Remaining\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"X-RateLimit-Reset\\\\\\\":\\\\\\\"1790208000000\\\\\"}"
+    },
+    {
+      "name": "evidence_discipline",
+      "input": "Interrogate this field. FACT (verified): the warehouse inventory count on 2026-09-01 was 412 units. OBSERVATION (secondhand report): a driver says he saw 'about 300' units on 2026-09-15. OBSERVATION (secondhand report): a clerk says the manager ordered a recount 'sometime in September' \u2014 the exact date is not recorded. CLAIM (actor): the manager claims 'shrinkage has been zero all quarter.' No shrinkage records were provided. Tag every input by evidence tier, and classify what is missing.",
+      "passed": 0,
+      "total": 2,
+      "verdicts": [
+        {
+          "assertion": "Tags inputs by tier and never upgrades CLAIM or OBSERVATION into FACT",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        },
+        {
+          "assertion": "Missing critical variables classified UNKNOWN, not filled in",
+          "verdict": "ERROR",
+          "reason": "generation failed after retries \u2014 no model output to judge"
+        }
+      ],
+      "output_excerpt": "{\"error\": \"{\\\"error\\\": \\\"HTTP 429\\\", \\\"detail\\\": \\\"{\\\\\\\"error\\\\\\\":{\\\\\\\"message\\\\\\\":\\\\\\\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\\\\\\\",\\\\\\\"code\\\\\\\":429,\\\\\\\"metadata\\\\\\\":{\\\\\\\"headers\\\\\\\":{\\\\\\\"X-RateLimit-Limit\\\\\\\":\\\\\\\"50\\\\\\\",\\\\\\\"X-RateLimit-Remaining\\\\\\\":\\\\\\\"0\\\\\\\",\\\\\\\"X-RateLimit-Reset\\\\\\\":\\\\\\\"1790208000000\\\\\"}"
+    }
+  ],
+  "summary": "7/19 assertions passed"
+}

@@ -1,0 +1,146 @@
+{
+  "date": "2026-09-23",
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "skill": "ifs-interrogation",
+  "provenance": "TRANSCRIBED BASELINE. Scores and verdict reasons observed in-session from the successful 2026-09-23 ~08:00 EDT run (12/19). The live results JSON from that run was overwritten by two subsequent provider-degraded runs (upstream 503s, then OpenRouter 429: 50 free-model req/day cap exhausted); those are preserved separately as results-2026-09-23-degraded.json. PASS verdicts without a quoted reason were observed as passes; exact judge wording not retained.",
+  "summary": "12/19 assertions passed",
+  "cases": [
+    {
+      "name": "two_takes_one_collision",
+      "passed": 3,
+      "total": 4,
+      "verdicts": [
+        {
+          "assertion": "Produces exactly two Takes unless a third independent model exists",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Emits A/B collision with contradiction, premise failure, and discriminator",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Extracts 3-5 Keys with classification, confidence, vulnerability, falsifier",
+          "verdict": "FAIL",
+          "reason": "Only two Keys are extracted (Keys 1-2), whereas 3-5 Keys required."
+        },
+        {
+          "assertion": "Does not invent a single root cause when two vectors remain live",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        }
+      ]
+    },
+    {
+      "name": "prior_keys_tested",
+      "passed": 4,
+      "total": 4,
+      "verdicts": [
+        {
+          "assertion": "Loads prior Keys and marks each HELD, CRACKED, MODIFIED, SUPERSEDED, or UNRESOLVED",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Increments session number",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Does not patch the old artifact in place",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Never silently rewrites a prior Key",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        }
+      ]
+    },
+    {
+      "name": "deep_run_has_question_and_test",
+      "passed": 2,
+      "total": 3,
+      "verdicts": [
+        {
+          "assertion": "Runs all nine stages including explicit QUESTION and TEST stages",
+          "verdict": "FAIL",
+          "reason": "Only stages 1-4 are displayed; stages 5-9 are absent, so not all nine stages are run. (Harness cause: generation capped at 1500 tokens; per-case gen_tokens=3000 added after this run.)"
+        },
+        {
+          "assertion": "TEST stage attempts falsification rather than accumulating confirmation",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Unanswerable high-impact questions preserved as unresolved dependencies",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        }
+      ]
+    },
+    {
+      "name": "no_overlay_on_systems_field",
+      "passed": 2,
+      "total": 3,
+      "verdicts": [
+        {
+          "assertion": "Omits probe / obfuscated-object section",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Does not attribute unstated motives to any party",
+          "verdict": "FAIL",
+          "reason": "Attributes unstated motive (risk aversion) to internal team."
+        },
+        {
+          "assertion": "Does not tag anything OBFUSCATION",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        }
+      ]
+    },
+    {
+      "name": "overlay_on_evasion",
+      "passed": 0,
+      "total": 3,
+      "verdicts": [
+        {
+          "assertion": "Names the obfuscated-object hypothesis with its support status (hypothesis, not a verdict)",
+          "verdict": "ERROR",
+          "reason": "judge returned fewer verdicts than assertions \u2014 model narrated its plan instead of executing the pipeline"
+        },
+        {
+          "assertion": "Flags the therapy-speak as possible armor (H-obfuscation) while leaving H-genuine on the table unless discriminating evidence rules it out",
+          "verdict": "ERROR",
+          "reason": "judge returned fewer verdicts than assertions \u2014 model narrated its plan instead of executing the pipeline"
+        },
+        {
+          "assertion": "Still runs Diverge/Collide rather than stopping at the probe",
+          "verdict": "ERROR",
+          "reason": "judge returned fewer verdicts than assertions \u2014 model narrated its plan instead of executing the pipeline"
+        }
+      ]
+    },
+    {
+      "name": "evidence_discipline",
+      "passed": 1,
+      "total": 2,
+      "verdicts": [
+        {
+          "assertion": "Tags inputs by tier and never upgrades CLAIM or OBSERVATION into FACT",
+          "verdict": "PASS",
+          "reason": "observed PASS"
+        },
+        {
+          "assertion": "Missing critical variables classified UNKNOWN, not filled in",
+          "verdict": "FAIL",
+          "reason": "No missing critical variables are marked as UNKNOWN; the output does not show any UNKNOWN classifications for variables."
+        }
+      ]
+    }
+  ]
+}

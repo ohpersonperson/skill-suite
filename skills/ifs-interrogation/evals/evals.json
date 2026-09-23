@@ -28,7 +28,8 @@
         "Unanswerable high-impact questions preserved as unresolved dependencies"
       ],
       "input": "ifs deep dive on this systemic field: why did the Riverside community garden collapse in its third year? Competing causal explanations: (A) the founder's departure removed the only organizer; (B) the parks department's new lease terms made the plot financially unviable; (C) volunteer transience \u2014 no cohort stayed longer than one season. Run the full nine-stage deep run with explicit QUESTION and TEST stages.",
-      "name": "deep_run_has_question_and_test"
+      "name": "deep_run_has_question_and_test",
+      "gen_tokens": 3000
     },
     {
       "assertions": [

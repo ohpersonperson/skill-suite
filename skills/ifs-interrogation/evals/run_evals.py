@@ -40,6 +40,26 @@ def extract_text(resp):
         return json.dumps(resp)[:500]
 
 
+def is_error_output(text):
+    t = text.strip()
+    return (not t) or len(t) < 200 or '"error"' in t[:300] or t.startswith('{"id": "gen-')
+
+
+def generate(model, skill, case_input, retries=3, max_tokens=1500):
+    import time
+    last = ""
+    for attempt in range(retries):
+        gen = chat(model,
+                   [{"role": "system", "content": skill},
+                    {"role": "user", "content": case_input}],
+                   max_tokens=max_tokens, temperature=0.2)
+        last = extract_text(gen)
+        if not is_error_output(last):
+            return last
+        time.sleep(5 * (attempt + 1))
+    return last
+
+
 def main():
     model = DEFAULT_MODEL
     only = None
@@ -60,50 +80,59 @@ def main():
 
     for case in cases:
         print(f"[{case['name']}] generating...", flush=True)
-        gen = chat(model,
-                   [{"role": "system", "content": skill},
-                    {"role": "user", "content": case["input"]}],
-                   max_tokens=1500, temperature=0.2)
-        output = extract_text(gen)
+        output = generate(model, skill, case["input"],
+                          max_tokens=case.get("gen_tokens", 1500))
 
-        # The judge only needs the substance, not the whole artifact:
-        # head (field/evidence/takes) + tail (keys/synthesize).
-        if len(output) > 6500:
-            judge_input = output[:3000] + "\n[...]\n" + output[-3000:]
+        if is_error_output(output):
+            verdicts = [{"assertion": a, "verdict": "ERROR",
+                         "reason": "generation failed after retries — no model output to judge"}
+                        for a in case["assertions"]]
+            passed = 0
         else:
-            judge_input = output
-        judge_sys = ("You are an eval judge. Given a model output and a numbered list of "
-                     "behavioral assertions, judge each assertion against the output. "
-                     "Reply with exactly one line per assertion, in order, formatted as: "
-                     "PASS: <one-line reason>  or  FAIL: <one-line reason>. "
-                     "No headers, no fences, no extra lines.")
-        judge_user = ("ASSERTIONS:\n" +
-                      "\n".join(f"{i+1}. {a}" for i, a in enumerate(case["assertions"])) +
-                      "\n\nMODEL OUTPUT:\n" + judge_input)
-        print(f"[{case['name']}] judging...", flush=True)
-        judge = chat(model,
-                     [{"role": "system", "content": judge_sys},
-                      {"role": "user", "content": judge_user}],
-                     max_tokens=1200, temperature=0.0)
-        jtext = extract_text(judge)
-        scored = []
-        for line in jtext.strip().splitlines():
-            s = line.strip().lstrip("-*• ").strip()
-            up = s.upper()
-            if up.startswith("PASS"):
-                scored.append(("PASS", s[4:].strip(" :")))
-            elif up.startswith("FAIL"):
-                scored.append(("FAIL", s[4:].strip(" :")))
-        verdicts = []
-        for i, a in enumerate(case["assertions"]):
-            if i < len(scored):
-                verdicts.append({"assertion": a, "verdict": scored[i][0],
-                                 "reason": scored[i][1]})
+            # The judge only needs the substance, not the whole artifact:
+            # head (field/evidence/takes) + tail (keys/synthesize).
+            if len(output) > 6500:
+                judge_input = output[:3000] + "\n[...]\n" + output[-3000:]
             else:
-                verdicts.append({"assertion": a, "verdict": "ERROR",
-                                 "reason": "judge returned fewer verdicts than assertions"})
+                judge_input = output
+            judge_sys = ("You are an eval judge. Given a model output and a numbered list of "
+                         "behavioral assertions, judge each assertion against the output. "
+                         "Reply with exactly one line per assertion, in order, formatted as: "
+                         "PASS: <one-line reason>  or  FAIL: <one-line reason>. "
+                         "No headers, no fences, no extra lines.")
+            judge_user = ("ASSERTIONS:\n" +
+                          "\n".join(f"{i+1}. {a}" for i, a in enumerate(case["assertions"])) +
+                          "\n\nMODEL OUTPUT:\n" + judge_input)
+            print(f"[{case['name']}] judging...", flush=True)
+            scored = []
+            for j_attempt in range(3):
+                judge = chat(model,
+                             [{"role": "system", "content": judge_sys},
+                              {"role": "user", "content": judge_user}],
+                             max_tokens=1200, temperature=0.0)
+                jtext = extract_text(judge)
+                scored = []
+                for line in jtext.strip().splitlines():
+                    s = line.strip().lstrip("-*• ").strip()
+                    up = s.upper()
+                    if up.startswith("PASS"):
+                        scored.append(("PASS", s[4:].strip(" :")))
+                    elif up.startswith("FAIL"):
+                        scored.append(("FAIL", s[4:].strip(" :")))
+                if len(scored) >= len(case["assertions"]):
+                    break
+                import time as _t
+                _t.sleep(3 * (j_attempt + 1))
+            verdicts = []
+            for i, a in enumerate(case["assertions"]):
+                if i < len(scored):
+                    verdicts.append({"assertion": a, "verdict": scored[i][0],
+                                     "reason": scored[i][1]})
+                else:
+                    verdicts.append({"assertion": a, "verdict": "ERROR",
+                                     "reason": "judge returned fewer verdicts than assertions"})
 
-        passed = sum(1 for v in verdicts if v.get("verdict") == "PASS")
+            passed = sum(1 for v in verdicts if v.get("verdict") == "PASS")
         results["cases"].append({
             "name": case["name"], "input": case["input"],
             "passed": passed, "total": len(verdicts),
