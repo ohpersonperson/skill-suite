@@ -21,7 +21,7 @@ If no prior state is supplied: treat the interrogation as new. Do not invent pri
 ## Dispositions
 
 - **HELD** — new evidence continues to support the Key substantially as written.
-- **CRACKED** — new evidence materially contradicts the Key. The Key is invalid.
+- **CRACKED** — new evidence materially contradicts the Key. The Key no longer carries load: do not use it as a premise in the next iteration. It stays in the artifact as a visible failure record — never delete a CRACKED Key. (2026-09-23: restored the Aug 13 canonical wording; the v2.0 "The Key is invalid" qualifier had no canonical source, and the v1.0 "damaged, not yet replaced" was a softening of the protocol.)
 - **MODIFIED** — the Key remains useful but its scope, wording, or conditions must change.
 - **SUPERSEDED** — a stronger explanatory structure replaces the previous Key.
 - **UNRESOLVED** — available evidence cannot determine whether the Key survives.

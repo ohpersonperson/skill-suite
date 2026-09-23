@@ -1,5 +1,10 @@
 # Changelog — ifs-interrogation
 
+## 2026-09-23 — v2.0.3
+
+- **CRACKED reconciliation (IFS-PROTO verification fix #1; independently confirmed by Gemini audit).** Restored the Aug 13 canonical wording — "new evidence materially contradicts the Key" — and pinned explicit operational semantics: a CRACKED Key no longer carries load in the next iteration (do not use it as a premise), but it stays in the artifact as a visible failure record; never delete a CRACKED Key. The v2.0 "The Key is invalid" qualifier had no canonical source; the v1.0 "damaged, not yet replaced" was Grok's softening of the protocol. Canonical wording now pinned in `references/prior-state.md`.
+- **Dropped the `# IFS‑PROTO.txt` reference (IFS-PROTO verification fix #6).** The file was expected per the audit brief but confirmed absent everywhere — workspace, repo, both audit-package zips, the ifs-proto build zip. No live skill content ever depended on it, so this was provenance debt, not a runtime break. Reference recorded as dropped in VERIFICATION.md.
+
 ## 2026-09-21 — v2.0.2
 
 - **Artifact provenance fields (IFS-PROTO verification gaps 8/9).** Added `protocol:` (skill + engine versions that produced the artifact) and `lifecycle:` (INITIAL | ITERATIVE | FINAL; FINAL only if the field is resolved enough that the next target is idle) to the state-artifact frontmatter, Interrogation Metadata, and State Status. Artifacts now record what produced them and their session lifecycle.

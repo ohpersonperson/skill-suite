@@ -26,6 +26,8 @@
 
 **Not available:** the file listed in the task brief as `# IFS‑PROTO.txt` was not found in the zip, the repo (`lab/ifs-proto-app/`), or anywhere else checked. Everything else listed was present.
 
+> **Resolution 2026-09-23:** re-checked exhaustively (workspace sweep, repo, both audit-package zips, ifs-proto build zip) — the file exists nowhere. No live skill content references it, so no runtime dependency was ever at risk; the expectation lived only in the audit brief. Reference dropped.
+
 ## Section-by-section audit
 
 Ratings: **MATCH** = same rule in both; **PARTIAL** = same concept, material difference; **MISMATCH** = absent from the engine (extensions are flagged as such, not as failures).
@@ -76,12 +78,12 @@ The v1.0 `evals.json`/`triggers.json` evals are prompt-behavior assertions, not 
 
 ## Concrete fix list
 
-1. **Reconcile the CRACKED definition.** v1.0: "damaged, not yet replaced." v2.0 `prior-state.md`: "new evidence materially contradicts the Key. The Key is invalid." Pick the canonical semantics and align both (or record the change as intentional in the CHANGELOG).
+1. **Reconcile the CRACKED definition.** ~~v1.0: "damaged, not yet replaced." v2.0 `prior-state.md`: "new evidence materially contradicts the Key. The Key is invalid." Pick the canonical semantics and align both (or record the change as intentional in the CHANGELOG).~~ **Resolved 2026-09-23 (v2.0.3):** canonical Aug 13 wording restored ("new evidence materially contradicts the Key") with pinned operational semantics — CRACKED Keys carry no load in the next iteration but remain as visible failure records; never delete them. CHANGELOG entry records the reconciliation.
 2. **Restore a protocol-version field in the v2.0 state artifact.** The engine's `Artifact.meta.protocol` (`"IFS-Proto-v1.0"`) has no counterpart in the v2.0 frontmatter. Add e.g. `protocol: ifs-interrogation/2.0 (+ engine IFS-Proto-v1.0)` so artifacts stay traceable to what produced them.
 3. **Label the deep run and modes as non-engine extensions.** The CHANGELOG does this for the deep run ("from the Aug 13 cross-model protocol and IFS2 Canonical"); the four operational modes carry no equivalent lineage note — add one so a future reader doesn't hunt the engine for them.
 4. **Clarify key-floor enforcement.** The engine caps Keys at 5 in code but the minimum of 3 is prompt-only. State this in the skill (it's inherited behavior, not a bug).
 5. **Fix the v1.0 lineage date.** The v1.0 package's own CHANGELOG dates v1.0 to **2026-09-16**; the v2.0 CHANGELOG lineage says "2026-09-17 — IFS-PROTO v1.0 bench + packaged skill". Clarify: v1.0 shipped Sep 16; the bench capture ran Sep 17.
-6. **Resolve the `# IFS‑PROTO.txt` reference.** It was expected as an engine file but exists in neither the zip nor the repo. Confirm whether it lives elsewhere or drop the reference.
+6. **Resolve the `# IFS‑PROTO.txt` reference.** ~~It was expected as an engine file but exists in neither the zip nor the repo. Confirm whether it lives elsewhere or drop the reference.~~ **Resolved 2026-09-23:** confirmed absent everywhere; reference dropped (see note under "What was compared").
 7. **Consider a legacy alias trigger.** The old `ifs-proto`/`ifsproto`/`/ifs-proto` invocations were dropped with the rename. If any automation or habit still uses them, add them back as aliases (or confirm the drop is final).
 8. **Record eval results.** This skill now has an `evals/` directory but no results file. Filing future runs (e.g. this report's harness output) next to the evals would close the "evals never run" gap permanently.
 
