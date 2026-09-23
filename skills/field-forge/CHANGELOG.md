@@ -1,5 +1,9 @@
 # Changelog — field-forge
 
+## 2026-09-23 — v2.0.1 (de-biasing reconciliation)
+
+- Reconciled the Hammer with the `responsibility-obfuscation-probe` v2.0 hypothesis protocol. The v2.0 conversion carried forward v1 language that pre-judged therapy-speak as armor ("called out as armor," "strip jargon and armor — immediately, not gently"). The Hammer now tests evasion hypotheses instead of presuming them: every therapy-language instance goes through H-obfuscation / H-genuine / H-both with discriminating evidence, and only H-obfuscation-supported material earns the OBFUSCATION tag. Suspected-but-untested material stays CLAIM with a hypothesis marker. No architecture change — same Anvil/Hammer/Furnace, corrected semantics.
+
 ## 2026-09-23 — v2.0 (overlay conversion; Phase 2.2)
 
 - Converted from standalone three-stage pipeline to opt-in overlay on the `ifs-interrogation` kernel. The v1 Furnace stage duplicated the kernel's Diverge→Collide→Adjudicate→Refine→Surprise; that duplication is retired. The kernel now owns everything from Diverge onward.

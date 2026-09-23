@@ -54,7 +54,8 @@
       "purpose": "Unified adversarial interrogation of contradictory or uncertain fields. One-pass by default, deep nine-stage run when the field warrants it.",
       "status": "active",
       "type": "workflow",
-      "version": "2.0.4"
+      "version": "2.0.5",
+      "roadmap_note": "Phase 4.2 done 2026-09-23 (legacy triggers); v2.0.5 same day: overlay-forge Hammer de-biased to hypothesis protocol. Phase 4.1: live-model behavioral eval harness shipped (evals/run_evals.py, free OpenRouter model, LLM-judged assertions); baseline run in progress. Note: router default model id nvidia/nemotron-3-ultra-550b:free is retired upstream; live catalog id is nvidia/nemotron-3-ultra-550b-a55b:free."
     },
     {
       "dependencies": [],
@@ -279,10 +280,10 @@
       "overlays": [],
       "persistence": null,
       "purpose": "Unified Dialectical Interrogation System: three-stage Anvil/Hammer/Furnace pipeline for situational auditing, obfuscation stripping, and dialectical interrogation.",
-      "roadmap_note": "Phase 2.2 done 2026-09-23: converted to opt-in overlay on ifs-interrogation kernel (Anvil+Hammer feed Diverge; Furnace is the handoff)",
+      "roadmap_note": "Phase 2.2 done 2026-09-23; v2.0.1 same day: Hammer reconciled with probe hypothesis protocol (de-biased)",
       "status": "active",
       "type": "overlay",
-      "version": "2.0"
+      "version": "2.0.1"
     },
     {
       "dependencies": [],

@@ -1,5 +1,9 @@
 # Changelog — ifs-interrogation
 
+## 2026-09-23 — v2.0.5
+
+- **Overlay-contract de-biasing (field-forge reconciliation).** Rewrote `references/overlay-forge.md` Hammer section to match the `responsibility-obfuscation-probe` v2.0 hypothesis protocol: therapy-language is tested (H-obfuscation / H-genuine / H-both) rather than pre-judged as armor, and the OBFUSCATION tag requires discriminating evidence. The v2.0 overlay conversion had carried forward v1's guilty-by-category language; this corrects it with no architecture change.
+
 ## 2026-09-23 — v2.0.4
 
 - **Legacy trigger restoration (Phase 4.2).** Re-introduced `ifs-proto`, `ifsproto`, `/ifs-proto`, and `proto interrogation` as explicit invocation aliases. The rename to `ifs-interrogation` had dropped them; restoring prevents routing breakage for callers using the old names. No behavior change.
